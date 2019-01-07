@@ -1,0 +1,185 @@
+%!TEX TS-program = xelatex
+%!TEX encoding = UTF-8 Unicode
+
+\documentclass[12pt,twoside]{book}
+\usepackage[
+	paperwidth=12.50cm,
+	paperheight=20.50cm,
+	top=2.0cm,
+	bottom=2.5cm,
+	inner=1.5cm,
+	outer=2.0cm,
+	marginparsep=0.35cm,
+	marginparwidth=0.75cm
+	]{geometry}
+% formato del cuerpo de texto
+	\headsep=1.0cm
+	\footskip=1.25cm
+	\parskip=1.0em
+%	\parindent=0cm
+%	\leftskip=0cm
+%	\rightskip=0cm
+	% lineas huérfanas y viudas
+	\clubpenalty=10000
+	\widowpenalty=10000
+
+% idiomas y localización
+	\usepackage[spanish,latin]{babel}
+
+% manejo de la mancha de texto
+	\usepackage{ragged2e}
+	% para manejar las notas de los márgenes
+	% admite opciones avanzadas, como división
+	% silabica manejable
+
+% gráficos
+	\usepackage{graphicx}
+%		\graphicspath{}
+		\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
+	\usepackage[usenames,dvipsnames]{xcolor}
+	\usepackage{wrapfig}
+
+\usepackage[font={color=Sepia,footnotesize},labelsep=colon]{caption}
+
+% tipografías y motor
+	\usepackage{fontspec}
+		\usepackage{xltxtra}
+		\usepackage{xunicode}
+	\defaultfontfeatures{
+		Ligatures={Rare,Historical},
+		Style=Historic,
+		Kerning=On,
+		Style=TitlingCaps,
+		Mapping=tex-text % ligadura de los guiones
+		}
+	\usepackage{lettrine}
+	\newcommand{\traps}[5]{
+		\lettrine[
+			image=true,
+			lines=5,
+			nindent=2pt,
+			depth=#1,
+			lraise=#2,
+			loversize=#3
+			]
+%			{\fontspec{EB Garamond Initials}\color{Red}#3}{\color{Sepia}#4}
+			{#4}{\color{black}#5}
+		}
+%	\setmainfont{Goudy Bookletter 1911}
+%	\setmainfont{Essays1743}
+%		\linespread{1.041666}
+	\setmainfont{EB Garamond}
+		\linespread{1.075}
+
+% títulos
+	\usepackage{titlesec}
+%	\titleformat{command}[shape]{format}{label}{sep}{before-code}{after-code}
+	\titleformat{\part}[block]{\huge}{}{0pt}{}{}
+	\titleformat{\chapter}[hang]{\huge}{\color{Sepia}§}{0.75ex}{\Large\roman{chapter}}{}
+%	\titlespacing*{\part}{0.5mm}{1.0\baselineskip}{0pt}
+
+% notas
+	\usepackage{marginnote}
+		\renewcommand*{\marginfont}{\color{Sepia}\tiny}
+	\renewcommand{\marginnotevadjust}{.8ex}
+
+% paginación
+	\pagestyle{plain}
+	\usepackage{emptypage}
+	\usepackage{lastpage}
+		% para cambios EN el documento
+		% \pagenumbering{gobble / arabic}
+
+% defición de PART
+	\setcounter{part}{1}
+	\newcommand{\mypart}[1]{%
+		\clearpage
+%		\checkoddpage
+			\ifodd\value{page}
+				% nada
+			\else
+				\hbox{}\newpage
+			\fi
+		\thispagestyle{empty}
+		\vspace*{0.01\textheight} % \fill
+		\begin{center}
+			\includegraphics[width=0.5\textwidth]{Imagenes/Demon_of_Calicut}\\[2.0em]
+			{\color{Sepia}\Large\Roman{part}}\\[2.0em]
+			{\huge#1}
+		\end{center}
+		\stepcounter{part}
+		}
+
+% maquetación
+	\usepackage{blindtext}
+
+% mytest
+	\newcommand{\mytest}{
+		\begin{wrapfigure}[6]{o}[12.5pt]{0.2\textwidth}
+		\vspace{0pt}
+			\reflectbox{
+			\includegraphics[width=0.2\textwidth]{Imagenes/alchemy}%
+				}
+		\end{wrapfigure}
+		}
+
+% % % 
+
+\begin{document}
+
+\mypart{Lorem Ipsum}
+
+\chapter{}
+\traps{0}{-0.025}{0.05}{L}{orem}\marginnote{\justifying Lipsum dolor sit amet, consectetuer adipis- cing elit. Etiam lobortis facilisis sem. Nullam nec mi et neque pharetra sollicitudin. Praesent imperdiet mi nec ante. Donec ullamcorper, felis non sodales commo- do, lectus velit ultrices augue, a dignissim nibh lectus placerat pede.}
+ipsum dolor sit amet, consectetuer adipis- cing elit. Etiam lobortis facilisis sem. Nullam nec mi et neque pharetra sollicitudin. Praesent imperdiet mi nec ante. Donec ullamcorper, felis non sodales commodo, lectus velit ultrices augue, a dignissim nibh lectus placerat pede. Vivamus nunc nunc, molestie ut, ultricies vel, semper in, velit. Ut porttitor. Praesent in sapien. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis fringilla tristique neque. Sed interdum libero ut metus. Pellentesque placerat. Nam rutrum augue a leo. Morbi sed elit sit amet ante lobortis sollicitudin. Praesent blandit blandit mauris. Praesent lectus tellus, aliquet aliquam, luctus a, egestas a, turpis. Mauris lacinia lorem sit amet ipsum. Nunc quis urna dictum turpis accumsan semper.
+
+Lorem ipsum dolor sit amet, consectetuer adipis- cing elit. Etiam lobortis facilisis sem. Nullam nec mi et neque\mytest pharetra sollicitudin. Praesent imperdiet mi nec ante. Donec ullamcorper, felis non sodales commodo, lectus velit ultrices augue, a dignissim nibh lectus placerat pede. Vivamus nunc nunc, molestie ut, ultricies vel, semper in, velit. Ut porttitor. Praesent in sapien. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis fringilla tristique neque. Sed interdum libero ut metus. Pellentesque placerat. Nam rutrum augue a leo. Morbi sed elit sit amet ante lobortis sollicitudin. Praesent blandit blandit mauris. Praesent lectus tellus, aliquet aliquam, luctus a, egestas a, turpis. Mauris lacinia lorem sit amet ipsum. Nunc quis urna dictum turpis accumsan semper.
+
+% cuidado con poner éste entorno cruzando de página
+\begin{wrapfigure}[11]{I}[0pt]{0.5\textwidth}
+	\vspace{-25pt}
+	\begin{center}
+	\rotatebox[origin=c]{-3}{
+	\reflectbox{
+		\includegraphics[width=0.45\textwidth]{Imagenes/Demon_of_Calicut_2}%
+		}
+		}
+	\end{center}
+	\vspace{-20pt}
+	\caption{Calicut}
+\end{wrapfigure}
+
+Lorem ipsum dolor sit amet, consectetuer adipis- cing elit. Etiam lobortis facilisis sem. Nullam nec mi et neque pharetra sollicitudin. Praesent imperdiet mi nec ante. Donec ullamcorper, felis non sodales commo- do, lectus velit ultrices augue, a dignissim nibh lectus placerat pede. Vivamus nunc nunc, molestie ut, ultricies vel, semper in, velit. Ut porttitor. Praesent in sapien. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis fringilla tristique neque. Sed interdum libero ut metus. Pellentesque placerat. Nam rutrum augue a leo. Morbi sed elit sit amet ante lobortis sollicitudin. Praesent blandit blandit mauris. Praesent lectus tellus, aliquet aliquam, luctus a, egestas a, turpis. Mauris lacinia lorem sit amet ipsum. Nunc quis urna dictum turpis accumsan semper.
+
+Lorem ipsum dolor sit amet, consectetuer adipis- cing elit. Etiam lobortis facilisis sem. Nullam nec mi et neque pharetra sollicitudin. Praesent imperdiet mi nec ante. Donec ullamcorper, felis non sodales commo- do, lectus velit ultrices augue, a dignissim nibh lectus placerat pede. Vivamus nunc nunc, molestie ut, ultricies vel, semper in, velit. Ut porttitor. Praesent in sapien. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis fringilla tristique neque. Sed interdum libero ut metus.
+
+\vfill
+\begin{figure}[h]
+	\includegraphics[width=\textwidth]{Imagenes/dragons}
+	\caption{Alquimia}
+\end{figure}
+
+%\Blindtext[1][1]
+
+\chapter{}
+\traps{0}{-0.025}{0.05}{L}{orem}\marginnote{\justifying Lipsum dolor sit amet, consectetuer adipis- cing elit. Etiam lobortis facilisis sem. Nullam nec mi et neque pharetra sollicitudin. Praesent imperdiet mi nec ante. Donec ullamcorper, felis non sodales commo- do, lectus velit ultrices augue, a dignissim nibh lectus placerat pede.}
+ipsum dolor sit amet, consectetuer adipis- cing elit. Etiam lobortis facilisis sem. Nullam nec mi et neque pharetra sollicitudin. Praesent imperdiet mi nec ante. Donec ullamcorper, felis non sodales commo- do, lectus velit ultrices augue, a dignissim nibh lectus placerat pede. Vivamus nunc nunc, molestie ut, ultricies vel, semper in, velit. Ut porttitor. Praesent in sapien. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis fringilla tristique neque. Sed interdum libero ut metus. Pellentesque placerat. Nam rutrum augue a leo. Morbi sed elit sit amet ante lobortis sollicitudin. Praesent blandit blandit mauris. Praesent lectus tellus, aliquet aliquam, luctus a, egestas a, turpis. Mauris lacinia lorem sit amet ipsum. Nunc quis urna dictum turpis accumsan semper.
+
+\Blindtext[4][1]
+
+\mypart{Dolor sit amet}
+
+\chapter{}
+\traps{0}{-0.025}{0.05}{L}{orem}\marginnote{\justifying Lipsum dolor sit amet, consectetuer adipis- cing elit. Etiam lobortis facilisis sem. Nullam nec mi et neque pharetra sollicitudin. Praesent imperdiet mi nec ante. Donec ullamcorper, felis non sodales commo- do, lectus velit ultrices augue, a dignissim nibh lectus placerat pede.}
+ipsum dolor sit amet, consectetuer adipis- cing elit. Etiam lobortis facilisis sem. Nullam nec mi et neque pharetra sollicitudin. Praesent imperdiet mi nec ante. Donec ullamcorper, felis non sodales commo- do, lectus velit ultrices augue, a dignissim nibh lectus placerat pede. Vivamus nunc nunc, molestie ut, ultricies vel, semper in, velit. Ut porttitor. Praesent in sapien. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis fringilla tristique neque. Sed interdum libero ut metus. Pellentesque placerat. Nam rutrum augue a leo. Morbi sed elit sit amet ante lobortis sollicitudin. Praesent blandit blandit mauris. Praesent lectus tellus, aliquet aliquam, luctus a, egestas a, turpis. Mauris lacinia lorem sit amet ipsum. Nunc quis urna dictum turpis accumsan semper.
+
+\Blindtext[4][1]
+
+
+\chapter{}
+\traps{0}{-0.025}{0.05}{L}{orem}\marginnote{\justifying Lipsum dolor sit amet, consectetuer adipis- cing elit. Etiam lobortis facilisis sem. Nullam nec mi et neque pharetra sollicitudin. Praesent imperdiet mi nec ante. Donec ullamcorper, felis non sodales commo- do, lectus velit ultrices augue, a dignissim nibh lectus placerat pede.}
+ipsum dolor sit amet, consectetuer adipis- cing elit. Etiam lobortis facilisis sem. Nullam nec mi et neque pharetra sollicitudin. Praesent imperdiet mi nec ante. Donec ullamcorper, felis non sodales commo- do, lectus velit ultrices augue, a dignissim nibh lectus placerat pede. Vivamus nunc nunc, molestie ut, ultricies vel, semper in, velit. Ut porttitor. Praesent in sapien. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Duis fringilla tristique neque. Sed interdum libero ut metus. Pellentesque placerat. Nam rutrum augue a leo. Morbi sed elit sit amet ante lobortis sollicitudin. Praesent blandit blandit mauris. Praesent lectus tellus, aliquet aliquam, luctus a, egestas a, turpis. Mauris lacinia lorem sit amet ipsum. Nunc quis urna dictum turpis accumsan semper.
+
+\Blindtext[4][1]
+
+\end{document}
